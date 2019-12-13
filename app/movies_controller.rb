@@ -13,7 +13,7 @@ def can_be_instantiated_and_then_saved
 end
 
 def can_be_created_with_a_hash_of_attributes
-  movie = Movie.new
+  movie = Movie.c
   attributes = {
       title: "The Sting",
       release_date: 1973,
@@ -21,11 +21,12 @@ def can_be_created_with_a_hash_of_attributes
       lead: "Paul Newman",
       in_theaters: false
   }
-  movie.title = attributes[:title]
-  movie.release_date = attributes[:release_date]
-  movie.director = attributes[:director]
-  movie.lead = attributes[:lead]
-  movie.in_theaters = attributes[:in_theaters]
+  movie = Movie.create(attributes)
+  #movie.title = attributes[:title]
+  #movie.release_date = attributes[:release_date]
+  #movie.director = attributes[:director]
+  #movie.lead = attributes[:lead]
+  #movie.in_theaters = attributes[:in_theaters]
 end
 
 def can_be_created_in_a_block(args = {title: "Home Alone", release_date: "1990"})
