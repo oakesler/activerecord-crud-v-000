@@ -6,13 +6,14 @@
 # end                              # end
 
 def can_be_instantiated_and_then_saved
-  movie = __
+  movie = Movie.new
   movie.title = "This is a title."
-  __
+  movie.save
+  movie
 end
 
 def can_be_created_with_a_hash_of_attributes
-  # Initialize movie and then and save it
+  movie = Movie.new
   attributes = {
       title: "The Sting",
       release_date: 1973,
@@ -20,16 +21,18 @@ def can_be_created_with_a_hash_of_attributes
       lead: "Paul Newman",
       in_theaters: false
   }
-  movie = __
+  movie = Movie.new(attributes)
+  movie.save
+  
 end
 
-def can_be_created_in_a_block(args = __)
-  # If no arguments are passed, use default values:
-  # title == "Home Alone"
-  # release_date == 1990
-  
+def can_be_created_in_a_block(args = {title: "Home Alone", release_date: "1990"})
   Movie.create do |m|
-    __
+      m.string :title 
+      m.integer :release_date 
+      m.string :director
+      m.string :lead 
+      m.boolean :in_theaters
   end
 end
 
@@ -96,5 +99,5 @@ def can_destroy_all_items_at_once
   10.times do |i|
     Movie.create(title: "Movie_#{i}")
   end
-  __
+  Movie.destroy_all
 end
